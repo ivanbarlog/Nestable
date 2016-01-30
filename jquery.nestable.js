@@ -376,6 +376,8 @@
             this.dragDepth = 0;
             this.hasNewRoot = false;
             this.pointEl = null;
+            // fixedDepth: dragItemDepth
+            this.dragItemDepth = null;
         },
 
         expandItem: function(li) {
@@ -420,6 +422,8 @@
             var mouse = this.mouse,
                 target = $(e.target),
                 dragItem = target.closest(this.options.itemNodeName);
+                // fixedDepth: store dragItem Original depth
+                this.dragItemDepth = dragItem.parents(this.options.listNodeName).length;
 
             this.options.onDragStart.call(this, this.el, dragItem);
 
@@ -577,6 +581,8 @@
              * move horizontal
              */
             if(mouse.dirAx && mouse.distAxX >= opt.threshold) {
+                // fixedDepth: not allow to move horizontal.
+                if(opt.fixedDepth){ return; }
                 // reset move distance on x-axis for new phase
                 mouse.distAxX = 0;
                 prev = this.placeEl.prev(opt.itemNodeName);
@@ -648,8 +654,8 @@
                     return;
                 }
 
-                // fixed item's depth, use for some list has specific type, eg:'Volume, Section, Chapter ...'
-                if(this.options.fixedDepth && this.dragDepth + 1 !== this.pointEl.parents(opt.listNodeName).length) {
+                // fixedDepth: check the poinetEl depth, must be same as  dragItem original Depth
+                if(opt.fixedDepth && this.dragItemDepth !== this.pointEl.parents(opt.listNodeName).length) {
                     return;
                 }
 
