@@ -3,6 +3,8 @@
 Nestable
 ========
 
+[![Join the chat at https://gitter.im/ivanbarlog/Nestable](https://badges.gitter.im/ivanbarlog/Nestable.svg)](https://gitter.im/ivanbarlog/Nestable?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## We are writing a new readme! Till now, please continue read the source ;)
 
 ## PLEASE NOTE
